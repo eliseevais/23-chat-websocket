@@ -1,0 +1,38 @@
+.App {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  box-sizing: border-box;
+  margin: 0 auto;
+  height: 100vh;
+}
+
+.ContainerChat {
+  border: 1px solid black;
+  width: 300px;
+  height: 300px;
+  padding: 10px;
+  align-self: center;
+  overflow-y: scroll;
+  box-sizing: border-box;
+}
+
+.ContainerNewMessageSend {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: flex-start;
+  margin: 10px;
+  width: 300px;
+  box-sizing: border-box;
+
+  textarea {
+    width: 70%;
+  }
+
+  button {
+    width: 30%;
+    height: 100%;
+  }
+}
