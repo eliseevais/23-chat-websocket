@@ -12,28 +12,40 @@ type MessageType = {
   }
 }
 
+let socket = io("http://localhost:3009");
+// let socket = io();
+
 function App() {
 
   useEffect(() => {
-    let socket = io();
+    socket.on('init-messages-published', (messages: Array<MessageType>) => {
+      setMessages(messages)
+    })
   }, []);
 
-  const [messages, setMessages] = useState([
-    {message: "Hello Viktor", id: "1", user: {id: '11', name: "Dimych"}},
-    {message: "Hello Dimych", id: "2", user: {id: '12', name: "Viktor"}},
-  ])
+  const [messages, setMessages] = useState<Array<MessageType>>([]);
+  const [message, setMessage] = useState('Hello everybody!');
+
+  const onChangeHandler = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
+    setMessage(e.currentTarget.value)
+  };
+  const onClickHandler = () => {
+    socket.emit('client-message-sent', message);
+    setMessage('');
+  };
+
   return (
     <div className="App">
       <div className={"ContainerChat"}>
         {messages.map((m: MessageType) => {
-          return <div>
+          return <div key={m.id}>
             <b>{m.user.name}</b>: {m.message}
           </div>
         })}
       </div>
       <div className={"ContainerNewMessageSend"}>
-        <textarea/>
-        <button>send</button>
+        <textarea value={message} onChange={onChangeHandler}/>
+        <button onClick={onClickHandler}>send</button>
       </div>
     </div>
   );
