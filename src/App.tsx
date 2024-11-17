@@ -12,7 +12,8 @@ export type MessageType = {
   }
 };
 
-let socket = io("http://localhost:3009");
+// let socket = io("http://localhost:3009");
+let socket = io("https://vercel.com/irina-eliseevas-projects/23-1-chat-websocket-back");
 
 function App() {
 
