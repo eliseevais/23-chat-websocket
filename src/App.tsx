@@ -68,22 +68,30 @@ function App() {
 
   return (
     <div className="App">
-      <div className={"ContainerChat"} onScroll={onScrollHandler}>
-        {messages.map((m: MessageType) => {
-          return <div key={m.id}>
-            <b>{m.user.name}</b>: {m.message}
-            <div ref={lastMessageAnchorRef}></div>
-          </div>
-        })}
-      </div>
-      <div className={"ContainerNewMessageSend"}>
-        <input value={name} onChange={onChangeHandlerName}/>
-        <button onClick={onClickHandlerSetName}>set name</button>
-      </div>
+      <div className={"AppBar"}>Chat on Websocket</div>
 
-      <div className={"ContainerNewMessageSend"}>
-        <textarea value={message} onChange={onChangeHandlerSetMessage}/>
-        <button onClick={onClickHandlerSendMessage}>send</button>
+      <div className={'ContainerWindow'}>
+        <div className={"ContainerChat"} onScroll={onScrollHandler}>
+          {messages.map((m: MessageType) => {
+            return <div key={m.id}>
+              <b>{m.user.name}</b>: {m.message}
+              <div ref={lastMessageAnchorRef}></div>
+            </div>
+          })}
+        </div>
+
+        <div className={'ContainerForButtons'}>
+          <div className={"ContainerNewMessageSend"}>
+            <input value={name} onChange={onChangeHandlerName}/>
+            <button onClick={onClickHandlerSetName}>set name</button>
+          </div>
+
+          <div className={"ContainerNewMessageSend"}>
+            <textarea value={message} onChange={onChangeHandlerSetMessage}/>
+            <button onClick={onClickHandlerSendMessage}>send</button>
+          </div>
+        </div>
+
       </div>
     </div>
   );
